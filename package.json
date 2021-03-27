@@ -1,0 +1,35 @@
+{
+  "name": "hydrauto",
+  "version": "0.0.1",
+  "description": "Automate Hydroponics With Node.js",
+  "main": "index.js",
+  "author": "therynamo",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_OPTIONS=--max_old_space_size=1000 TS_NODE_FILES=src/* nodemon src/index.ts -e ts",
+    "build": "tsc",
+    "vroom": "yarn build && NODE_OPTIONS=--max_old_space_size=1000 ./dist/src/index.js"
+  },
+  "devDependencies": {
+    "@types/johnny-five": "^1.3.0",
+    "@types/node-dht-sensor": "^0.4.0",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "eslint": "^7.22.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-jest": "^24.3.2",
+    "eslint-plugin-node": "^11.1.0",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "influx": "^5.8.0",
+    "johnny-five": "^2.0.0",
+    "node-dht-sensor": "^0.4.3",
+    "pm2": "^4.5.5",
+    "raspi-io": "^11.0.0",
+    "wemo-client": "^0.15.0"
+  }
+}
