@@ -69,6 +69,11 @@ const main = async function main(count: number = 0) {
   } catch (error) {
     console.log(error);
     pm2.restart('humid', console.log);
+    influx.writePoints([{
+      measurement: 'wemo',
+      tags: { sensor: 'wemo' },
+      fields: { restarts: 1 }
+    }])
   }
 
   console.log(`Switch state: ${switchState}`);
