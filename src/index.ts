@@ -28,7 +28,7 @@ const influx = new InfluxDB({
 const main = async function main(count: number = 0) {
   const { temperature, humidity } = await sensor.read(11, 4)
 
-  if (humidity <= 70) {
+  if (humidity >= 60) {
     try {
       await setState(0)
     } catch (error) {
@@ -45,7 +45,7 @@ const main = async function main(count: number = 0) {
     }
   }
 
-  if (humidity >= 76) {
+  if (humidity <= 66) {
     try {
       await setState(1)
     } catch (error) {
