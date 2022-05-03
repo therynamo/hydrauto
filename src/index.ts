@@ -28,10 +28,11 @@ const influx = new InfluxDB({
 const main = async function main(count: number = 0) {
   const { temperature, humidity } = await sensor.read(11, 4)
 
-  if (humidity >= 66) {
+  if (humidity >= 60) {
     try {
       await setState(0)
     } catch (error) {
+      console.log('❌ Unable to switch off Humidifier');
       console.log(error)
       influx.writePoints([{
         measurement: 'hvac_error',
@@ -45,10 +46,11 @@ const main = async function main(count: number = 0) {
     }
   }
 
-  if (humidity <= 60) {
+  if (humidity <= 55) {
     try {
       await setState(1)
     } catch (error) {
+      console.log('❌ Unable to switch on Humidifier');
       console.log(error)
       influx.writePoints([{
         measurement: 'hvac_error',
@@ -67,6 +69,7 @@ const main = async function main(count: number = 0) {
   try {
     switchState = await getState();
   } catch (error) {
+    console.log('🔧 Unable to get switch state - restarting process')
     console.log(error);
     pm2.restart('humid', console.log);
     influx.writePoints([{
